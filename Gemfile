@@ -4,7 +4,7 @@ gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 
 gem "awesome_print"
 gem "babel-transpiler"
-gem 'bootstrap', '~> 4.0.0.alpha3.1'
+gem 'bootstrap', '~> 4.0.0.alpha5'
 gem "city-state"
 gem 'coffee-rails', '~> 4.2'
 gem "delayed_job_active_record"
@@ -22,6 +22,7 @@ gem "slim-rails", github: "slim-template/slim-rails"
 gem "sprockets", github: "rails/sprockets"
 gem "stripe"
 gem 'sqlite3'
+gem 'tether-rails'
 gem 'turbolinks', '~> 5'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'uglifier', '>= 1.3.0'
@@ -53,6 +54,7 @@ group :test do
   gem 'capybara'
   gem "capybara-screenshot"
   gem 'database_cleaner'
+  gem 'fake_stripe'
   gem 'launchy'
   gem "poltergeist"
   gem 'selenium-webdriver'
