@@ -37,13 +37,11 @@ class PurchasesCart
      payment_method: "stripe"}
   end
 
-  ## START: code.purchase_charge
   def charge
     charge = StripeCharge.charge(token: stripe_token, payment: payment)
     payment.update!(
         status: charge.status, response_id: charge.id,
         full_response: charge.to_json)
   end
-  ## END: code.purchase_charge
 
 end

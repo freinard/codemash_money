@@ -7,10 +7,8 @@ class User < ApplicationRecord
 
   has_many :tickets
 
-  ## START: code.user_tickets_in_cart
   def tickets_in_cart
     tickets.waiting.all.to_a
   end
-  ## END: code.user_tickets_in_cart
 
 end
