@@ -19,23 +19,6 @@ class CheckoutForm {
   }
 }
 
-class TokenHandler {
-  static handle(status, response) {
-    new TokenHandler(status, response).handle()
-  }
-
-  constructor(status, response) {
-    this.checkoutForm = new CheckoutForm()
-    this.status = status
-    this.response = response
-  }
-
-  handle() {
-    this.checkoutForm.appendHidden("stripe_token", this.response.id)
-    this.checkoutForm.submit()
-  }
-}
-
 class StripeForm {
 
   constructor() {
@@ -53,7 +36,7 @@ class StripeForm {
       return false
     }
     this.checkoutForm.disableButton()
-    Stripe.card.createToken(this.checkoutForm.form(), TokenHandler.handle)
+    this.checkoutForm.submit()
     return false
   }
 }
