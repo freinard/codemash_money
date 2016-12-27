@@ -11,9 +11,9 @@ describe PurchasesCart do
     let(:ticket_3) { instance_spy(Ticket, status: "unsold", id: 3) }
     let(:user) { instance_double(
         User, id: 5, tickets_in_cart: [ticket_1, ticket_2]) }
-    let(:token) { StripeToken.new(
-        credit_card_number: "4242424242424242", expiration_month: "12",
-        expiration_year: Time.zone.now.year + 1, cvc: "123") }
+    let(:token) { Stripe::Token.create(
+        card: {number: "4242424242424242", exp_month: "12",
+          exp_year: Time.zone.now.year + 1, cvc: "123"}) }
     let(:workflow) { PurchasesCart.new(
         user: user, purchase_amount_cents: 3000,
         stripe_token: token) }

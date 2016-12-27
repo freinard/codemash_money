@@ -5,15 +5,15 @@ class PaymentsController < ApplicationController
   end
 
   def create
-    @tickets ||= current_user.tickets_in_cart
-    @tickets.each(&:purchased!)
-    @payment = Payment.create!(
-        user_id: current_user.id,
-        reference: Payment.generate_reference,
-        price_cents: params[:purchase_amount_cents],
-        status: "created")
-    @payment.create_line_items(tickets)
-    redirect_to payment_path(id: @payment.reference)
+    workflow = PurchasesCart.new(
+        user: current_user, stripe_token: params[:stripe_token],
+        purchase_amount_cents: params[:purchase_amount_cents])
+    workflow.run
+    if workflow.success
+      redirect_to payment_path(id: workflow.payment.reference)
+    else
+      redirect_to shopping_cart_path
+    end
   end
 
 end
