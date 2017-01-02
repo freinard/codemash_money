@@ -18,31 +18,39 @@ h1 Shopping Cart
 
 h3 Total #{humanized_money_with_symbol(@cart.total_cost)}
 
-//##START: code.credit_card_form
 h2 Checkout
 
-h3 Credit Card Info
+#credit-card-info
+  h3 Credit Card Info
 
-= form_tag(payments_path, class: "form-inline", id: "payment-form") do
+= form_tag(payments_path, class: "form-horizontal", id: "payment-form") do
   = hidden_field_tag(:purchase_amount_cents, @cart.total_cost.cents)
+  = hidden_field_tag(:ticket_ids, @cart.tickets.map(&:id))
 
-  .form_group
-    = label_tag(:credit_card_number, "Credit Card Number", class: "sr-only")
-    input.form-control(placeholder="Credit Card #"
-      data-stripe="number" id="credit_card_number")
+  .row
+    .form-group
+      .col-sm-2
+        = label_tag(:credit_card_number, "Credit Card Number")
+      .col-sm-3
+        input.form-control.valid-field(placeholder="Credit Card #"
+          data-stripe="number" id="credit_card_number")
+      .col-sm-1
+          = image_tag("creditcards/credit.png", id: "card-image")
 
-  .form_group
-    = label_tag(:expiration_month, "Month", class: "sr-only")
-    input.form-control(placeholder="Month"
-      data-stripe="exp-month" id="expiration_month")
+  .row
+    .form-group
+      .col-sm-2
+        = label_tag(:expiration_month, "Expiration Date", class: "control-label")
+      .col-sm-2
+        input.form-control.valid-field(placeholder="MM / YY"
+          data-stripe="exp" id="expiration_date")
 
-    = label_tag(:expiration_year, "Year", class: "sr-only")
-    input.form-control(placeholder="Year"
-      data-stripe="exp-year" id="expiration_year")
-
-    = label_tag(:cvc, "Year", class: "sr-only")
-    input.form-control(placeholder="CVC #" data-stripe="cvc" id="cvc")
+  .row
+    .form-group
+      .col-sm-2
+        = label_tag(:cvc, "CVC", class: "control-label")
+      .col-sm-1
+        input.form-control.valid-field(data-stripe="cvc" id="cvc")
 
   .form_group
     = submit_tag("Purchase Cart", class: "btn btn-default", id: "purchase")
-//##START: code.credit_card_form
