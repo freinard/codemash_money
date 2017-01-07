@@ -1,4 +1,4 @@
-<% 10.times do |i| %>
+<% 100.times do |i| %>
   midsummer_bums_<%=i %>:
     performance: midsummer
     status: unsold
@@ -6,6 +6,16 @@
 
   next_day_bums_<%=i %>:
     performance: next_day
+    status: unsold
+    price_cents: 1500
+
+  midsummer_bums_romeo_<%=i %>:
+    performance: midsummer_romeo
+    status: unsold
+    price_cents: 1500
+
+  next_day_bums_romeo_<%=i %>:
+    performance: next_day_romeo
     status: unsold
     price_cents: 1500
 <% end %>
