@@ -2,9 +2,9 @@
 
 This is the demonstration app for the pre-compiler workshop "Money Makes Your App Go Round" for CodeMash 2017.
 
-Please make sure you have the most recent version of this repo if you are pre-loading it before the workshop. 
+Please make sure you have the most recent version of this repo if you are pre-loading it before the workshop.
 
-This Repo was last changed on December 9, 2017
+This Repo was last changed on Saturday, Jan 7
 
 # General Requirements
 
@@ -14,7 +14,7 @@ In order to run the code associated with this workshop, you need the following:
 
 - Ruby. Ruby 2.3.x is ideal, but the code should run with little to no modification in Ruby 2.0.x and up.
 - Ruby Gems and the ability to run Bundler to compile native gems
-- SQLite 
+- SQLite
 - Git
 
 If you have all those things, great, you should be able to follow the setup instructions.
@@ -43,6 +43,8 @@ Run the application with
 
     % rails server
 
+You need to log in to handle tickets, the test user name is "codemash@example.com" and the test password is "password"
+
 If you use RVM, and this command errors with something like "bin/rails:3: undefined method `require_relative'", you'll need to cd out of the directory and back into it
 
     % cd ..
@@ -57,7 +59,7 @@ Run tests with
 
     % rspec
 
-# Operating System Build Requirements 
+# Operating System Build Requirements
 
 ## MacOS
 
@@ -65,7 +67,7 @@ If you don't have XCode installed, you should do that, and then install the comm
 
      % xcode-select --install
 
-You'll also want to install [Homebrew](http://brew.sh/), which is the package manager for macOS. 
+You'll also want to install [Homebrew](http://brew.sh/), which is the package manager for macOS.
 
 All you need to do to install Homebrew is run the following from a terminal prompt:
 
@@ -100,9 +102,9 @@ And install SQLite
 
     % sudo apt-get install sqlite3 libsqlite3-dev
 
-## Windows 
+## Windows
 
-This one gets tricky. There are two ways to go about this. 
+This one gets tricky. There are two ways to go about this.
 
 ## Via Linux Subsystem
 
