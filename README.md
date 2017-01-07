@@ -27,7 +27,7 @@ Clone this repository:
 
 Move into the repository directory
 
-    % cd codemash_money.git
+    % cd codemash_money
 
 Install gems -- install bundler if needed
 
