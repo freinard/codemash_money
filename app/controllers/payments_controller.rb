@@ -12,7 +12,7 @@ class PaymentsController < ApplicationController
         reference: Payment.generate_reference,
         price_cents: params[:purchase_amount_cents],
         status: "created")
-    @payment.create_line_items(tickets)
+    @payment.create_line_items(@tickets)
     redirect_to payment_path(id: @payment.reference)
   end
 
