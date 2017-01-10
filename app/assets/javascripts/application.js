@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require tether
 //= require bootstrap-sprockets
+//= require jquery.payment
 //= require turbolinks
 //= require purchases_cart
 //= require_tree .

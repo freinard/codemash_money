@@ -18,7 +18,7 @@ describe PurchasesCart do
                reference: reference) }
   let(:workflow) { PurchasesCart.new(
       user: user, purchase_amount_cents: 3000,
-      stripe_token: token) }
+      stripe_token: token, expected_ticket_ids: "1 2") }
 
   describe "successful credit card purchase", :vcr do
     let(:token) { Stripe::Token.create(
@@ -31,6 +31,7 @@ describe PurchasesCart do
           status: "succeeded", response_id: a_string_starting_with("ch_"),
           full_response: a_truthy_value)
       expect(payment).to receive(:create_line_items).with([ticket_1, ticket_2])
+      expect(payment).to receive(:failed?).and_return(false)
       workflow.run
     end
 
@@ -45,9 +46,9 @@ describe PurchasesCart do
   end
 
   describe "an unsuccessful credit card purchase", :vcr do
-    let(:token) { Stripe::Token.new(
-        credit_card_number: "4000000000000002", expiration_month: "12",
-        expiration_year: Time.zone.now.year + 1, cvc: "123") }
+    let(:token) { Stripe::Token.create(
+        card: {number: "4000000000000002", exp_month: "12",
+          exp_year: Time.zone.now.year + 1, cvc: "123"}) }
 
     before(:example) do
       allow(Payment).to receive(:create!).with(attributes).and_return(payment)
