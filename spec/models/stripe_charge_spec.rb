@@ -2,9 +2,9 @@ require "rails_helper"
 
 describe StripeCharge, :vcr do
 
-  let(:token) { StripeToken.new(
-      credit_card_number: "4242424242424242", expiration_month: "12",
-      expiration_year: Time.zone.now.year + 1, cvc: "123") }
+  let(:token) { Stripe::Token.create(
+    card: {number: "4242424242424242", exp_month: "12",
+      exp_year: Time.zone.now.year + 1, cvc: "123"}) }
   let(:payment) { build_stubbed(
       :payment, price: Money.new(3000), reference: Payment.generate_reference) }
 
